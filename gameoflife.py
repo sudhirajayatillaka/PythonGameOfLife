@@ -16,7 +16,7 @@ def update_board(board):
                 for y in range(max(0, j - 1), min(col, j + 2)):
                     if (x != i or y != j) and board[x][y] == 1:
                         liveneighbors += 1
-            if liveneighbors < 2 and liveneighbors > 3:
+            if liveneighbors < 2 or liveneighbors > 3:
                 newboard[i][j] = 0
             if liveneighbors == 3:
                 newboard[i][j] = 1
@@ -29,7 +29,7 @@ def rnd_board(ncol,nrow):
     rnd_board = [[0] * ncol for i in range(nrow)]
     for i in range(nrow):
         for j in range(ncol):
-            rnd_board[i][j] = random.choice([0, 1], p=[0.9, 0.1]).item()
+            rnd_board[i][j] = random.choice([0, 1], p=[0.5, 0.5]).item()
     
     return rnd_board
 
@@ -52,12 +52,12 @@ def draw_board():
                 isdead = False
             else:
                 fill_color = "black"
-            C.create_rectangle(j*10, i*10, j*10+10, i*10+10, fill=fill_color , outline = 'white')
+            C.create_rectangle(j*10, i*10, j*10+10, i*10+10, fill=fill_color , outline = 'gray')
     if isdead:
         board = rnd_board(int(hres/10),int(vres/10))
     else:
         board = update_board(board)
-    C.after(100,draw_board)
+    C.after(50,draw_board)
 
 
 def new_board(event):
