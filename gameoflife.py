@@ -34,7 +34,7 @@ board = rnd_board(100,100)
 root = Tk()
 root.title("Game Of Life")
 
-def draw_board(event):
+def draw_board():
     isdead = True
     global board
     print(board)
@@ -53,15 +53,19 @@ def draw_board(event):
         board = rnd_board(100,100)
     else:
         board = update_board(board)
+    C.after(100,draw_board)
 
+
+def new_board(event):
+    global board
+    board = rnd_board(100,100)
 
     
 
-
 C = Canvas(root, bg="Black", height=1000, width=1000)
 
-C.bind("<Motion>",draw_board)
+C.bind("<Button-3>",new_board)
 
 C.pack()
-
+draw_board()
 root.mainloop()
