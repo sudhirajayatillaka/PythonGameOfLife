@@ -1,5 +1,4 @@
-# from tkinter import *
-import time
+from tkinter import *
 import random
 
 def update_board(board):
@@ -30,17 +29,39 @@ def rnd_board(ncol,nrow):
     
     return rnd_board
 
-board = rnd_board(10,10)
+board = rnd_board(100,100)
 
-while True:
-    print(board)
-    board = update_board(board)
-    time.sleep(1)
-
-'''
 root = Tk()
-a = Label(root, text ="Hello World")
-a.pack()
+root.title("Game Of Life")
+
+def draw_board(event):
+    isdead = True
+    global board
+    print(board)
+    C.delete("all")
+    row = len(board)
+    col = len(board[0])
+    for i in range(row):
+        for j in range(col):
+            if board[i][j] == 1:
+                fill_color = "white"
+                isdead = False
+            else:
+                fill_color = "black"
+            C.create_rectangle(j*10, i*10, j*10+10, i*10+10, fill=fill_color , outline = 'white')
+    if isdead:
+        board = rnd_board(100,100)
+    else:
+        board = update_board(board)
+
+
+    
+
+
+C = Canvas(root, bg="Black", height=1000, width=1000)
+
+C.bind("<Motion>",draw_board)
+
+C.pack()
 
 root.mainloop()
-'''
