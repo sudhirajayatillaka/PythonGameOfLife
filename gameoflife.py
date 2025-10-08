@@ -1,8 +1,9 @@
 from tkinter import *
 import random
+from numpy import random
 
-vres = 1080
-hres = 1920
+vres = 1000
+hres = 1000
 
 def update_board(board):
     row = len(board)
@@ -28,11 +29,11 @@ def rnd_board(ncol,nrow):
     rnd_board = [[0] * ncol for i in range(nrow)]
     for i in range(nrow):
         for j in range(ncol):
-            rnd_board[i][j] = random.randint(0, 1)
+            rnd_board[i][j] = random.choice([0, 1], p=[0.9, 0.1]).item()
     
     return rnd_board
 
-board = rnd_board(hres/10,vres/10)
+board = rnd_board(int(hres/10),int(vres/10))
 
 root = Tk()
 root.title("Game Of Life")
@@ -53,7 +54,7 @@ def draw_board():
                 fill_color = "black"
             C.create_rectangle(j*10, i*10, j*10+10, i*10+10, fill=fill_color , outline = 'white')
     if isdead:
-        board = rnd_board(100,100)
+        board = rnd_board(int(hres/10),int(vres/10))
     else:
         board = update_board(board)
     C.after(100,draw_board)
@@ -61,7 +62,7 @@ def draw_board():
 
 def new_board(event):
     global board
-    board = rnd_board(100,100)
+    board = rnd_board(int(hres/10),int(vres/10))
 
     
 
