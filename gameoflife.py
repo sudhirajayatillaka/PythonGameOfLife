@@ -1,4 +1,6 @@
 # from tkinter import *
+import time
+import random
 
 def update_board(board):
     row = len(board)
@@ -19,17 +21,21 @@ def update_board(board):
                 newboard[i][j] = 1
     return newboard
 
-board = [
-    [0, 0, 0, 0, 0],
-    [0, 1, 1, 0, 0],
-    [0, 0, 1, 0, 0],
-    [0, 0, 0, 1, 1],
-    [0, 0, 0, 0, 0],
-]
+
+def rnd_board(ncol,nrow):
+    rnd_board = [[0] * ncol for i in range(nrow)]
+    for i in range(nrow):
+        for j in range(ncol):
+            rnd_board[i][j] = random.randint(0, 1)
+    
+    return rnd_board
+
+board = rnd_board(10,10)
 
 while True:
     print(board)
     board = update_board(board)
+    time.sleep(1)
 
 '''
 root = Tk()
