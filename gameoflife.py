@@ -37,11 +37,12 @@ board = rnd_board(int(hres/10),int(vres/10))
 
 root = Tk()
 root.title("Game Of Life")
+root.configure(background='black')
 
 def draw_board():
     isdead = True
     global board
-    print(board)
+    #print(board)
     C.delete("all")
     row = len(board)
     col = len(board[0])
