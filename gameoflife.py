@@ -1,6 +1,9 @@
 from tkinter import *
 import random
 
+vres = 1080
+hres = 1920
+
 def update_board(board):
     row = len(board)
     col = len(board[0])
@@ -29,7 +32,7 @@ def rnd_board(ncol,nrow):
     
     return rnd_board
 
-board = rnd_board(100,100)
+board = rnd_board(hres/10,vres/10)
 
 root = Tk()
 root.title("Game Of Life")
@@ -62,7 +65,7 @@ def new_board(event):
 
     
 
-C = Canvas(root, bg="Black", height=1000, width=1000)
+C = Canvas(root, bg="Black", height=hres, width=vres)
 
 C.bind("<Button-3>",new_board)
 
