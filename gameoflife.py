@@ -41,7 +41,6 @@ root.title("Game Of Life")
 root.configure(background='black')
 
 def draw_board():
-    isdead = True
     global board
     #print(board)
     C.delete("all")
@@ -51,20 +50,18 @@ def draw_board():
         for j in range(col):
             if board[i][j] == 1:
                 fill_color = "white"
-                isdead = False
             else:
                 fill_color = "black"
             C.create_rectangle(j*10, i*10, j*10+10, i*10+10, fill=fill_color , outline = 'gray')
-    if isdead:
-        board = rnd_board(int(hres/10),int(vres/10))
-    else:
-        board = update_board(board)
-    C.after(100,draw_board)
+
+    #board = update_board(board)
+    #C.after(1000,draw_board)
 
 
 def new_board(event):
     global board
     board = rnd_board(int(hres/10),int(vres/10))
+    draw_board()
 
 def left_click(event):
     global board
@@ -73,10 +70,17 @@ def left_click(event):
     ycord = math.floor(event.y/10)
     print("X : ", xcord, " Y : ", ycord)
 
+def next_gen(event):
+    global board
+    board = update_board(board)
+    draw_board()
+
+
 
 C = Canvas(root, bg="Black", height=hres, width=vres)
 
 C.bind("<Button-3>", new_board)
+C.bind("<Button-2>", next_gen)
 C.bind("<Button-1>", left_click)
 
 C.pack()
