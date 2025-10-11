@@ -34,7 +34,15 @@ def rnd_board(ncol,nrow):
     
     return rnd_board
 
-board = rnd_board(int(hres/10),int(vres/10))
+def cl_board(ncol,nrow):
+    cl_board = [[0] * ncol for i in range(nrow)]
+    for i in range(nrow):
+        for j in range(ncol):
+            cl_board[i][j] = 0
+    
+    return cl_board
+
+board = cl_board(int(hres/10),int(vres/10))
 
 root = Tk()
 root.title("Game Of Life")
@@ -69,6 +77,12 @@ def left_click(event):
     xcord = math.floor(event.x/10)
     ycord = math.floor(event.y/10)
     print("X : ", xcord, " Y : ", ycord)
+    if board[ycord][xcord] == 1:
+        board[ycord][xcord] = 0
+    else:
+        board[ycord][xcord] = 1
+    C.after(10,draw_board)
+    
 
 def next_gen(event):
     global board
@@ -82,6 +96,7 @@ C = Canvas(root, bg="Black", height=hres, width=vres)
 C.bind("<Button-3>", new_board)
 C.bind("<Button-2>", next_gen)
 C.bind("<Button-1>", left_click)
+C.bind("<B1-Motion>", left_click)
 
 C.pack()
 draw_board()
