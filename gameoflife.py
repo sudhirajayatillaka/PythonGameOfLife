@@ -1,6 +1,7 @@
 from tkinter import *
 import random
 from numpy import random
+import math
 
 vres = 1000
 hres = 1000
@@ -58,18 +59,25 @@ def draw_board():
         board = rnd_board(int(hres/10),int(vres/10))
     else:
         board = update_board(board)
-    C.after(50,draw_board)
+    C.after(100,draw_board)
 
 
 def new_board(event):
     global board
     board = rnd_board(int(hres/10),int(vres/10))
 
-    
+def left_click(event):
+    global board
+    #print(event)
+    xcord = math.floor(event.x/10)
+    ycord = math.floor(event.y/10)
+    print("X : ", xcord, " Y : ", ycord)
+
 
 C = Canvas(root, bg="Black", height=hres, width=vres)
 
-C.bind("<Button-3>",new_board)
+C.bind("<Button-3>", new_board)
+C.bind("<Button-1>", left_click)
 
 C.pack()
 draw_board()
