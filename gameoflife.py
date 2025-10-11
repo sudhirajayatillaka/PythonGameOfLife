@@ -3,8 +3,8 @@ import random
 from numpy import random
 import math
 
-vres = 1000
-hres = 1000
+vres = 100
+hres = 100
 
 def update_board(board):
     row = len(board)
@@ -19,10 +19,13 @@ def update_board(board):
                         liveneighbors += 1
             if liveneighbors < 2 or liveneighbors > 3:
                 newboard[i][j] = 0
+                print("i : ", i, " j : ", j, " Dead")
             if liveneighbors == 3:
                 newboard[i][j] = 1
+                print("i : ", i, " j : ", j, " Alive")
             if liveneighbors == 2 and newboard[i][j] == 1:
                 newboard[i][j] = 1
+                print("i : ", i, " j : ", j, " Alive")
     return newboard
 
 
