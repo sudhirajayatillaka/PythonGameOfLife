@@ -101,7 +101,6 @@ C = Canvas(root, bg="Black", height=hres, width=vres)
 C.bind("<Button-3>", new_board)
 C.bind("<Button-2>", next_gen)
 C.bind("<Button-1>", left_click)
-C.bind("<B1-Motion>", left_click)
 
 C.pack()
 draw_board()
