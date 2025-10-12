@@ -21,13 +21,13 @@ def update_board(board):
                         liveneighbors += 1
             if liveneighbors < 2 or liveneighbors > 3:
                 newboard[i][j] = 0
-                print("i : ", i, " j : ", j, " Dead")
+                #print("i : ", i, " j : ", j, " Dead")
             if liveneighbors == 3:
                 newboard[i][j] = 1
-                print("i : ", i, " j : ", j, " Alive")
+                #print("i : ", i, " j : ", j, " Alive")
             if liveneighbors == 2 and board[i][j] == 1:
                 newboard[i][j] = 1
-                print("i : ", i, " j : ", j, " Alive")
+                #print("i : ", i, " j : ", j, " Alive")
     return newboard
 
 
@@ -35,7 +35,7 @@ def rnd_board(ncol,nrow):
     rnd_board = [[0] * ncol for i in range(nrow)]
     for i in range(nrow):
         for j in range(ncol):
-            rnd_board[i][j] = random.choice([0, 1], p=[0.9, 0.1]).item()
+            rnd_board[i][j] = random.choice([0, 1], p=[0.5, 0.5]).item()
     
     return rnd_board
 
@@ -47,7 +47,7 @@ def cl_board(ncol,nrow):
     
     return cl_board
 
-board = cl_board(int(hres/10),int(vres/10))
+board = t=rnd_board(int(hres/10),int(vres/10))
 
 root = Tk()
 root.title("Game Of Life")
@@ -82,7 +82,7 @@ def left_click(event):
     #print(event)
     xcord = math.floor(event.x/10)
     ycord = math.floor(event.y/10)
-    print("X : ", xcord, " Y : ", ycord)
+    #print("X : ", xcord, " Y : ", ycord)
     if board[ycord][xcord] == 1:
         board[ycord][xcord] = 0
     else:
