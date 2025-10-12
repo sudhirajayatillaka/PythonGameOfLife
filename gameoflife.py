@@ -23,7 +23,7 @@ def update_board(board):
             if liveneighbors == 3:
                 newboard[i][j] = 1
                 print("i : ", i, " j : ", j, " Alive")
-            if liveneighbors == 2 and newboard[i][j] == 1:
+            if liveneighbors == 2 and board[i][j] == 1:
                 newboard[i][j] = 1
                 print("i : ", i, " j : ", j, " Alive")
     return newboard
