@@ -3,8 +3,8 @@ import random
 from numpy import random
 import math
 
-vres = 1000
-hres = 1000
+vres = 2000
+hres = 2000
 
 auto = True
 
@@ -62,14 +62,14 @@ def draw_board():
     for i in range(row):
         for j in range(col):
             if board[i][j] == 1:
-                fill_color = "white"
+                fill_color = "lime"
             else:
                 fill_color = "black"
-            C.create_rectangle(j*10, i*10, j*10+10, i*10+10, fill=fill_color , outline = 'gray')
+            C.create_rectangle(j*10, i*10, j*10+10, i*10+10, fill = fill_color , outline = 'black')
 
     if(auto):
         board = update_board(board)
-        C.after(100,draw_board)
+        C.after(1000,draw_board)
 
 
 def new_board(event):
