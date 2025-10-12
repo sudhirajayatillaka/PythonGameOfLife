@@ -3,8 +3,10 @@ import random
 from numpy import random
 import math
 
-vres = 100
-hres = 100
+vres = 1000
+hres = 1000
+
+auto = True
 
 def update_board(board):
     row = len(board)
@@ -33,7 +35,7 @@ def rnd_board(ncol,nrow):
     rnd_board = [[0] * ncol for i in range(nrow)]
     for i in range(nrow):
         for j in range(ncol):
-            rnd_board[i][j] = random.choice([0, 1], p=[0.5, 0.5]).item()
+            rnd_board[i][j] = random.choice([0, 1], p=[0.9, 0.1]).item()
     
     return rnd_board
 
@@ -65,8 +67,9 @@ def draw_board():
                 fill_color = "black"
             C.create_rectangle(j*10, i*10, j*10+10, i*10+10, fill=fill_color , outline = 'gray')
 
-    #board = update_board(board)
-    #C.after(1000,draw_board)
+    if(auto):
+        board = update_board(board)
+        C.after(100,draw_board)
 
 
 def new_board(event):
@@ -91,7 +94,6 @@ def next_gen(event):
     global board
     board = update_board(board)
     draw_board()
-
 
 
 C = Canvas(root, bg="Black", height=hres, width=vres)
